@@ -1,0 +1,358 @@
+/* Importar estilos base del dashboard */
+@import url('inicio.css');
+
+/* ==============================================
+   HEADER ESPECÍFICO PARA USUARIOS
+   ============================================== */
+.admin-actions-header {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 20px;
+}
+
+.btn-new {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 12px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+}
+
+.btn-new:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+}
+
+/* ==============================================
+   TABLA DE USUARIOS
+   ============================================== */
+.users-container {
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.users-table-container {
+    overflow-x: auto;
+}
+
+.users-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.users-table thead {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.users-table th {
+    padding: 15px 12px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 14px;
+    border-bottom: none;
+}
+
+.users-table tbody tr {
+    border-bottom: 1px solid #e9ecef;
+    transition: background-color 0.3s ease;
+}
+
+.users-table tbody tr:hover {
+    background-color: #f8f9fa;
+}
+
+.users-table td {
+    padding: 15px 12px;
+    vertical-align: middle;
+    font-size: 14px;
+}
+
+/* Estilos específicos para columnas */
+.user-id {
+    font-weight: 700;
+    color: #667eea;
+    font-size: 16px;
+}
+
+.user-info-cell {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.user-icon {
+    font-size: 20px;
+    color: #6c757d;
+}
+
+.user-name {
+    font-weight: 600;
+    color: #333;
+}
+
+.user-email {
+    color: #666;
+    font-family: monospace;
+    font-size: 13px;
+}
+
+.user-role {
+    text-align: center;
+    color: #333;
+}
+
+.role-badge {
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.role-usuario {
+    background: #e3f2fd;
+    color: #1976d2;
+}
+
+.role-tecnico {
+    background: #e8f5e8;
+    color: #2e7d32;
+}
+
+
+.tickets-count {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 12px;
+    display: inline-block;
+    min-width: 25px;
+    text-align: center;
+}
+
+.user-date {
+    color: #666;
+    font-size: 13px;
+}
+
+.user-actions {
+    text-align: center;
+}
+
+.btn-promote {
+    background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+    color: white;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    transition: all 0.3s ease;
+}
+
+.btn-promote:hover {
+    background: linear-gradient(135deg, #218838 0%, #1e7e34 100%);
+    transform: translateY(-1px);
+}
+
+.no-action {
+    color: #6c757d;
+    font-style: italic;
+    font-size: 12px;
+}
+
+/* ==============================================
+   MODAL PARA PROMOVER USUARIO
+   ============================================== */
+.user-name-display {
+    background: #f8f9fa;
+    padding: 10px 15px;
+    border-radius: 8px;
+    border: 2px solid #e9ecef;
+    font-weight: 600;
+    color: #333;
+    margin: 0;
+}
+
+.form-group input[type="text"] {
+    width: 100%;
+    padding: 12px 15px;
+    border: 2px solid #e9ecef;
+    border-radius: 8px;
+    font-size: 14px;
+    transition: border-color 0.3s ease;
+}
+
+.form-group input[type="text"]:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+/* ==============================================
+   ESTADO SIN USUARIOS
+   ============================================== */
+.no-users {
+    text-align: center;
+    padding: 60px 30px;
+}
+
+.no-users-icon {
+    font-size: 80px;
+    color: #dee2e6;
+    margin-bottom: 20px;
+}
+
+.no-users h3 {
+    color: #333;
+    margin-bottom: 10px;
+    font-size: 24px;
+}
+
+.no-users p {
+    color: #666;
+    margin-bottom: 30px;
+    font-size: 16px;
+}
+
+/* ==============================================
+   RESPONSIVE DESIGN
+   ============================================== */
+@media (max-width: 1200px) {
+    .users-table th,
+    .users-table td {
+        padding: 12px 8px;
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 768px) {
+    .admin-actions-header {
+        margin-bottom: 15px;
+    }
+    
+    .btn-new {
+        font-size: 14px;
+        padding: 10px 16px;
+    }
+    
+    .users-table {
+        font-size: 12px;
+    }
+    
+    .users-table th,
+    .users-table td {
+        padding: 10px 6px;
+    }
+    
+    .user-info-cell {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px;
+    }
+    
+    .btn-promote {
+        font-size: 11px;
+        padding: 6px 10px;
+    }
+    
+    .role-badge {
+        font-size: 10px;
+        padding: 3px 8px;
+    }
+    
+    .tickets-count {
+        font-size: 10px;
+        padding: 3px 6px;
+    }
+}
+/* Contenedor de acciones */
+.user-actions {
+    display: flex;
+    gap: 10px; /* espacio entre botones */
+    align-items: center; /* alinear verticalmente */
+}
+
+/* Ajuste general para los formularios de acciones */
+.user-actions form {
+    display: inline-flex;
+    margin: 0;
+    padding: 0;
+}
+
+/* Botón promover */
+.btn-promote {
+    background: linear-gradient(135deg, #28a745, #20c997);
+    color: white;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.3s ease;
+    font-size: 14px;
+}
+
+.btn-promote:hover {
+    background: linear-gradient(135deg, #218838, #1e7e34);
+    transform: translateY(-1px);
+}
+
+/* Botón degradar */
+.btn-demote {
+    background: linear-gradient(135deg, #ffc107, #e0a800);
+    color: #212529;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.3s ease;
+    font-size: 14px;
+}
+
+.btn-demote:hover {
+    background: linear-gradient(135deg, #e0a800, #d39e00);
+    transform: translateY(-1px);
+}
+
+/* Botón eliminar */
+.btn-delete {
+    background: linear-gradient(135deg, #dc3545, #c82333);
+    color: white;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.3s ease;
+    font-size: 14px;
+}
+
+.btn-delete:hover {
+    background: linear-gradient(135deg, #c82333, #a71d2a);
+    transform: translateY(-1px);
+}

@@ -1,0 +1,88 @@
+/* General */
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+    background-color: #f8fafd;
+    color: #333;
+}
+
+/* Header */
+.header {
+    background: linear-gradient(90deg, #00c6ff, #0072ff);
+    color: white;
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header h1 {
+    margin: 0;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.header .user-info {
+    font-size: 14px;
+    opacity: 0.9;
+}
+
+.back-btn {
+    color: white;
+    font-size: 20px;
+    text-decoration: none;
+    margin-right: 10px;
+}
+
+.back-btn:hover {
+    opacity: 0.8;
+}
+
+/* Contenedor principal */
+.container {
+    padding: 30px;
+    max-width: 1200px;
+    margin: auto;
+}
+
+/* Ticket historial */
+.ticket-history-card {
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+    border-left: 6px solid #2ecc71;
+    transition: transform 0.2s ease;
+}
+
+.ticket-history-card:hover {
+    transform: translateY(-3px);
+}
+
+.ticket-title {
+    font-size: 16px;
+    font-weight: bold;
+    color: #0072ff;
+    margin-bottom: 8px;
+}
+
+.ticket-meta {
+    font-size: 13px;
+    color: #666;
+}
+
+/* No tickets */
+.no-tickets {
+    text-align: center;
+    padding: 40px 20px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+}
+
+.no-tickets i {
+    font-size: 40px;
+    color: #999;
+    margin-bottom: 15px;
+}
