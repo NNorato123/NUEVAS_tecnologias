@@ -1,0 +1,437 @@
+/* ==============================================
+   ESTILOS GLOBALES Y RESET
+   ============================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Estilos base del cuerpo de la página */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #f5f7fa;
+    min-height: 100vh;
+}
+
+/* ==============================================
+   HEADER - Barra superior del dashboard
+   Contiene: título, info del usuario y botón logout
+   ============================================== */
+.header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 20px 30px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Título principal "Mesa de Ayuda" en el centro del header */
+.header h1 {
+    flex: 1;
+    text-align: center;
+    font-size: 28px;
+    font-weight: 600;
+}
+
+/* Botón circular de cerrar sesión (icono de puerta) en la esquina derecha */
+.logout-btn {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 45px;
+    height: 45px;
+    font-size: 18px;
+}
+
+/* Efecto hover del botón de cerrar sesión */
+.logout-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(1.1);
+}
+
+/* Contenedor de información del usuario (esquina izquierda del header) */
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+/* Alineación del texto del usuario */
+.user-info>div {
+    text-align: right;
+}
+
+/* Texto del rol del usuario (debajo del nombre) */
+.user-role {
+    font-size: 0.85em;
+    color: rgba(255, 255, 255, 0.8);
+    margin-top: 2px;
+}
+
+/* ==============================================
+   CONTENEDOR PRINCIPAL
+   Área que contiene las tarjetas del dashboard
+   ============================================== */
+.container {
+    max-width: 1200px;
+    margin: 30px auto;
+    padding: 0 30px;
+}
+
+/* Grid que organiza las tarjetas en filas y columnas responsivas */
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 30px;
+}
+
+/* ==============================================
+   TARJETAS DEL DASHBOARD
+   Cada funcionalidad se muestra en una tarjeta
+   ============================================== */
+/* Estilos base de las tarjetas (Crear Ticket, Mis Tickets, etc.) */
+.card {
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+    cursor: pointer;
+}
+
+/* Efecto hover: las tarjetas se elevan al pasar el cursor */
+.card:hover {
+    transform: translateY(-5px);
+}
+
+/* Títulos de las tarjetas (ej: "📝 Crear Nuevo Ticket") */
+.card h3 {
+    color: #333;
+    margin-bottom: 15px;
+    font-size: 20px;
+}
+
+/* Descripción/párrafos dentro de las tarjetas */
+.card p {
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+/* Botones principales dentro de las tarjetas */
+.card button {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    width: 100%;
+}
+
+/* Efecto hover de los botones: cambian color y se elevan */
+.card button:hover {
+    background: linear-gradient(135deg, #5a6fd8 0%, #6a4190 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+}
+
+/* ==============================================
+   SECCIÓN DE INFORMACIÓN ADICIONAL
+   Solo visible para clientes (rol 1)
+   ============================================== */
+.info-section {
+    background: white;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    margin-top: 40px;
+    text-align: center;
+}
+
+/* Título de la sección informativa */
+.info-section h2 {
+    color: #333;
+    font-size: 28px;
+    margin-bottom: 25px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Párrafos de la información adicional */
+.info-section p {
+    color: #666;
+    line-height: 1.8;
+    font-size: 16px;
+    margin-bottom: 20px;
+    text-align: justify;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.info-section p:last-child {
+    margin-bottom: 0;
+}
+
+/* Estilos para listas en la sección de información */
+.info-section ul {
+    text-align: left;
+    max-width: 900px;
+    margin: 20px auto;
+    padding-left: 0;
+}
+
+.info-section li {
+    color: #555;
+    line-height: 1.7;
+    font-size: 15px;
+    margin-bottom: 12px;
+    padding-left: 25px;
+    position: relative;
+    list-style: none;
+}
+
+.info-section li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: #667eea;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.info-section li strong {
+    color: #333;
+    font-weight: 600;
+}
+
+/* ==============================================
+   FOOTER
+   Pie de página con copyright
+   ============================================== */
+footer {
+    text-align: center;
+    padding: 30px;
+    color: #666;
+    font-size: 14px;
+    margin-top: 50px;
+    border-top: 1px solid #e0e0e0;
+}
+
+/* ==============================================
+   MODAL PERSONALIZADO DE CERRAR SESIÓN
+   Reemplaza el alert() nativo del navegador
+   ============================================== */
+/* Overlay de fondo del modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+    animation: fadeIn 0.3s ease;
+}
+
+/* Contenido principal del modal */
+.modal-content {
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    max-width: 400px;
+    width: 90%;
+    animation: slideIn 0.3s ease;
+}
+
+/* Header del modal con el título */
+.modal-header {
+    padding: 25px 25px 15px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.modal-header h3 {
+    margin: 0;
+    color: #333;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+/* Cuerpo del modal con el mensaje */
+.modal-body {
+    padding: 20px 25px;
+}
+
+.modal-body p {
+    margin: 0;
+    color: #666;
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+/* Footer del modal con los botones de acción */
+.modal-footer {
+    padding: 15px 25px 25px;
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+}
+
+/* Botón "Cancelar" del modal */
+.btn-cancel {
+    background: #f5f5f5;
+    color: #666;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.btn-cancel:hover {
+    background: #e0e0e0;
+    color: #333;
+}
+
+/* Botón "Cerrar Sesión" del modal */
+.btn-confirm {
+    background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.btn-confirm:hover {
+    background: linear-gradient(135deg, #c0392b 0%, #a93226 100%);
+    transform: translateY(-1px);
+}
+
+/* ==============================================
+   ANIMACIONES
+   ============================================== */
+/* Animación de aparición del modal */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+/* Animación de deslizamiento del contenido del modal */
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ==============================================
+   RESPONSIVE DESIGN
+   Adaptación para dispositivos móviles
+   ============================================== */
+@media (max-width: 768px) {
+
+    /* Ajustes del header en móviles */
+    .header {
+        padding: 15px 20px;
+    }
+
+    .header h1 {
+        font-size: 24px;
+    }
+
+    .user-info>div {
+        text-align: center;
+    }
+
+    /* Ajustes del contenedor en móviles */
+    .container {
+        padding: 0 20px;
+    }
+    /* ==============================================
+   ALERTAS DE ÉXITO
+   ============================================== */
+.alert {
+    padding: 15px 20px;
+    border-radius: 8px;
+    margin-bottom: 25px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.alert-success {
+    background: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+/* Modal de éxito */
+.success-modal .modal-content {
+    border: 3px solid #28a745;
+}
+
+.success-header {
+    background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.success-header i {
+    font-size: 24px;
+}
+
+.btn-success {
+    background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.btn-success:hover {
+    background: linear-gradient(135deg, #218838 0%, #1e7e34 100%);
+    transform: translateY(-1px);
+}
+
+}

@@ -1,0 +1,46 @@
+name: Code Quality
+
+on:
+  push:
+    branches: [ "main", "master", "develop" ]
+  pull_request:
+    branches: [ "main", "master" ]
+  workflow_dispatch:  # Permite ejecución manual
+
+jobs:
+  code-quality:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Setup PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '8.1'
+        extensions: mbstring, xml, ctype, iconv, intl, pdo_mysql
+        coverage: xdebug
+
+    - name: Install dependencies
+      run: |
+        if [ -f composer.json ]; then
+          composer install --prefer-dist --no-progress
+        fi
+
+    - name: Run PHP Mess Detector
+      run: |
+        if [ -f composer.json ] && composer show | grep -q "phpmd"; then
+          ./vendor/bin/phpmd . text cleancode,codesize,controversial,design,naming,unusedcode --exclude vendor/,js/
+        fi
+
+    - name: Run PHP Copy/Paste Detector
+      run: |
+        if [ -f composer.json ] && composer show | grep -q "phpcpd"; then
+          ./vendor/bin/phpcpd . --exclude vendor --exclude js
+        fi
+
+    - name: Check for TODO/FIXME comments
+      run: |
+        echo "Checking for TODO/FIXME comments:"
+        grep -r --include="*.php" -n "TODO\|FIXME" . --exclude-dir=vendor --exclude-dir=js || echo "No TODO/FIXME found"

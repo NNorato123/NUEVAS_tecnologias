@@ -1,0 +1,119 @@
+name: PHP CI/CD
+
+on:
+  push:
+    branches: [ "main", "master", "develop" ]
+  pull_request:
+    branches: [ "main", "master" ]
+  workflow_dispatch:  # Permite ejecución manual
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    
+    strategy:
+      matrix:
+        php-versions: ['7.4', '8.0', '8.1', '8.2']
+        
+    services:
+      mysql:
+        image: mysql:8.0
+        env:
+          MYSQL_ROOT_PASSWORD: root
+          MYSQL_DATABASE: nuevastecnologias_test
+        ports:
+          - 3306:3306
+        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Setup PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: ${{ matrix.php-versions }}
+        extensions: mbstring, xml, ctype, iconv, intl, pdo_mysql, dom, filter, gd, iconv, json, mbstring, pdo
+        coverage: xdebug
+
+    - name: Validate composer.json and composer.lock
+      run: |
+        if [ -f composer.json ]; then
+          composer validate --strict
+        fi
+
+    - name: Cache Composer packages
+      id: composer-cache
+      uses: actions/cache@v3
+      with:
+        path: vendor
+        key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-php-
+
+    - name: Install dependencies
+      run: |
+        if [ -f composer.json ]; then
+          composer install --prefer-dist --no-progress --no-suggest
+        fi
+
+    - name: Check PHP syntax errors
+      run: |
+        find . -name "*.php" -not -path "./vendor/*" -not -path "./js/*" | xargs -I {} php -l {}
+
+    - name: Run PHP CodeSniffer
+      run: |
+        if [ -f composer.json ] && composer show | grep -q "phpcs"; then
+          ./vendor/bin/phpcs --standard=PSR12 --exclude=Generic.Files.LineLength . --ignore=vendor/,js/
+        fi
+
+    - name: Setup test database
+      run: |
+        mysql -h 127.0.0.1 -u root -proot -e "CREATE DATABASE IF NOT EXISTS nuevastecnologias_test;"
+
+    - name: Run PHPUnit tests (if available)
+      run: |
+        if [ -f phpunit.xml ] || [ -f phpunit.xml.dist ]; then
+          ./vendor/bin/phpunit
+        fi
+
+  security:
+    runs-on: ubuntu-latest
+    name: Security Check
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '8.1'
+        
+    - name: Security Check
+      run: |
+        if [ -f composer.json ]; then
+          composer audit || true
+        fi
+
+  deploy:
+    needs: [test, security]
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '8.1'
+        
+    - name: Deploy to production
+      run: |
+        echo "Deployment steps would go here"
+        # Add your deployment commands

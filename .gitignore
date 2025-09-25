@@ -1,0 +1,40 @@
+# Dependencies
+vendor/
+node_modules/
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# PHP
+*.log
+.env
+.env.local
+.env.*.local
+
+# Composer
+composer.phar
+composer.lock
+
+# Cache and temp files
+cache/
+temp/
+tmp/
+
+# Upload directories (if any)
+uploads/
+files/
+
+# Database backups
+*.sql
+*.dump
+
+# Config files with sensitive data
+config/database.php
+config/secrets.php
